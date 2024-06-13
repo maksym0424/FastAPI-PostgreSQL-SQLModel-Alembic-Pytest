@@ -1,0 +1,14 @@
+name: Deploy to Greensphere.one
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps: []
