@@ -1,0 +1,23 @@
+repos:
+  - repo: local
+    hooks:
+      - id: run-pytest
+        name: Run Pytest
+        entry: make runTest
+        language: system
+        types: [python]
+        stages: [commit]
+
+      - id: ruff-format
+        name: Ruff Format
+        entry: ruff format .
+        language: python
+        types: [python]
+        always_run: true
+        pass_filenames: false
+
+      - id: add-changes
+        name: Add Changes
+        entry: git add .
+        language: system
+        stages: [commit]
