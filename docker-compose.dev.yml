@@ -1,0 +1,44 @@
+services:
+  oxy-master-server:
+    build: .
+    container_name: oxy-master-server
+    restart: always
+    depends_on:
+      - oxy-master-db
+    networks:
+      - oxy-master-net
+    expose:
+      - "1140"
+    ports:
+      - "1140:1140"
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+      - PG_DATABASE_URL=${PG_DATABASE_URL}
+
+  oxy-master-db:
+    image: postgres
+    container_name: oxy-master-db
+    restart: always
+    networks:
+      - oxy-master-net
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    env_file:
+      - path: .env
+        required: true
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=${PG_DB}
+
+networks:
+  oxy-master-net:
+    name: oxy-master-net
+    driver: bridge
