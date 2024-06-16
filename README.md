@@ -1,6 +1,6 @@
-# master-server
+# Boilerplate
 
-Master server for [oxyproxy](https://oxyproxy.io).
+This is boilerplate project for FastAPI + PostgreSQL + SQLModel + Alembic DB Migration.
 
 # Developers guide
 
